@@ -1,0 +1,13 @@
+<resources>
+	<string name="app_name">Cities</string>
+	<string name="title_london">London</string>
+	<string name="title_paris">Paris</string>
+	<string name="title_copenhagen">Copenhagen</string>
+	<string name="title_dual">Budapest</string>
+
+	<string name="title_budapest_1">Budapest \n #1</string>
+	<string name="title_budapest_2">Budapest \n #2</string>
+	<string name="title_right">Right</string>
+	<string name="navigation_drawer_open">Cities</string>
+	<string name="navigation_drawer_close">Cities</string>
+</resources>
