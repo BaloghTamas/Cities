@@ -10,6 +10,8 @@ import hu.bute.daai.amorg.nested.R;
 
 public class LondonFragment extends Fragment
 {
+
+    public static String TAG = "London";
     public LondonFragment()
     {
         // Required empty public constructor

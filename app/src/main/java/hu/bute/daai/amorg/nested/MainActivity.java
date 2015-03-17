@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -93,52 +94,96 @@ public class MainActivity extends ActionBarActivity
         redFragment = CopenhagenFragment.newInstance();
         dualFragment = DualFragment.newInstance();
 
-        loadFragment(LondonFragment.newInstance());
+        selectItem(0);
 
     }
 
     public void selectItem(int position)
     {
 
-        Fragment selectedFragment;
+        String selectedTag;
         switch (position)
         {
             case 0:
             {
-                selectedFragment = whiteFragment;
+                selectedTag = LondonFragment.TAG;
                 break;
             }
             case 1:
             {
-                selectedFragment = greenFragment;
+                selectedTag = ParisFragment.TAG;
                 break;
             }
             case 2:
             {
-                selectedFragment = redFragment;
+                selectedTag = CopenhagenFragment.TAG;
                 break;
             }
             case 3:
             {
-                selectedFragment = dualFragment;
+                selectedTag = DualFragment.TAG;
                 break;
             }
             default:
             {
-                selectedFragment = whiteFragment;
+                selectedTag = LondonFragment.TAG;
             }
         }
 
-        loadFragment(selectedFragment);
+        loadFragment(selectedTag);
 
     }
 
-    private void loadFragment(Fragment fragment)
+    private void loadFragment(String fragmentTag)
     {
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+        */
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
+        Fragment taggedFragment = (Fragment) fm.findFragmentByTag(fragmentTag);
+        if (taggedFragment == null)
+        {
+
+            if (fragmentTag == LondonFragment.TAG)
+            {
+                taggedFragment = new LondonFragment();
+            }
+
+            if (fragmentTag == ParisFragment.TAG)
+            {
+                taggedFragment = new ParisFragment();
+            }
+
+            if (fragmentTag == CopenhagenFragment.TAG)
+            {
+                taggedFragment = new CopenhagenFragment();
+            }
+
+            if (fragmentTag == DualFragment.TAG)
+            {
+                taggedFragment = new DualFragment();
+            }
+
+        }
+        ft.replace(R.id.container, taggedFragment, fragmentTag);
+        ft.commit();
+
+        //Ezt fontos hívni
+        getSupportFragmentManager().executePendingTransactions();
+
+        Fragment frag2 = (Fragment) fm.findFragmentByTag(fragmentTag);
+        frag2.getActivity();
+
+
+
+
 
         drawerLayout.closeDrawer(Gravity.LEFT);
     }

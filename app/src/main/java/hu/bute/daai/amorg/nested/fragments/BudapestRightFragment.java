@@ -10,6 +10,8 @@ import hu.bute.daai.amorg.nested.R;
 
 public class BudapestRightFragment extends Fragment
 {
+    public static String TAG = "BudapestRight";
+
     public BudapestRightFragment()
     {
         // Required empty public constructor

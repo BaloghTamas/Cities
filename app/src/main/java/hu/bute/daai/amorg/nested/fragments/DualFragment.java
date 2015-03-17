@@ -14,6 +14,8 @@ import hu.bute.daai.amorg.nested.magic.ParallaxPageTransformer;
 public class DualFragment extends Fragment
 {
 
+    public static String TAG = "DualFragment";
+
     public DualFragment()
     {
         // Required empty public constructor
