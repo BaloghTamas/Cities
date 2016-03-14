@@ -12,3 +12,18 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-19
     - sys-img-armeabi-v7a-android-23
+
+deploy:
+  provider: releases
+  api_key: add10704a0424a818935b58e17737dd045de4dad
+  file: app/build/outputs/apk/app-release.apk
+  skip_cleanup: true
+  on:
+    tags: true
+
+notifications:
+  email:
+    recipients:
+    - bataritosz@gmail.com
+    on_success: always
+    on_failure: always
