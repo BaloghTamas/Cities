@@ -15,7 +15,7 @@ android:
 
 deploy:
   provider: releases
-  api_key: add10704a0424a818935b58e17737dd045de4dad
+  api_key: GUTHUB_KEY
   file: app/build/outputs/apk/app-release.apk
   skip_cleanup: true
   on:
