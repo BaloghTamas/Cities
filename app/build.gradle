@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
 	compileSdkVersion 23
 	buildToolsVersion "23.0.1"
@@ -9,12 +10,28 @@ android {
 		minSdkVersion 15
 		targetSdkVersion 23
 		versionCode 1
-		versionName "0.5"
+		versionName "0.6"
+	}
+
+	signingConfigs {
+		debug {
+			storeFile file("../Cards_debug.keystore")
+		}
+		release {
+			storeFile file("../Cards.keystore")
+			storePassword System.getenv('STORE_PASSWORD')
+			keyAlias "Cards"
+			keyPassword System.getenv('KEY_PASSWORD')
+		}
 	}
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.release;
+		}
+		debug {
+			signingConfig signingConfigs.debug;
 		}
 	}
 }
